@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1"
+	>
+
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+	
+
+	<style>
+  #calendar {
+  width: 100%;
+  font: monospace;
+  line-height: 1.2em;
+  font-size: 15px;
+  text-align: center;
+}
+#calendar thead tr:last-child {
+  font-size: small;
+  color: rgb(85, 85, 85);
+}
+#calendar thead tr:nth-child(1) td:nth-child(2) {
+  color: orange;
+}
+#calendar thead tr:nth-child(1) td:nth-child(1):hover, #calendar thead tr:nth-child(1) td:nth-child(3):hover {
+  cursor: pointer;
+}
+#calendar tbody td {
+  color: rgb(44, 86, 122);
+}
+#calendar tbody td:nth-child(n+6), #calendar .holiday {
+  color: rgb(231, 140, 92);
+}
+#calendar tbody td.today {
+  background: rgb(220, 0, 0);
+  color: #fff;
+}
+	    .regButton {
+
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 6px 24px;
+            cursor: pointer;
+        }
+
+        .regButton:hover {
+            background: #ccc;
+        }
+
+        #window {
+            width: 350px;
+            height: 530px;
+            margin: 40px auto;
+            background: #fff;
+            border: 1px solid #fff;
+            border-radius: 15px;
+            z-index: 150; display: none;
+             position: fixed; left: 0;right: 0;top:0;bottom: 0;
+        } 
+        .form{
+            width: 275px; margin: -15px auto 20px auto; text-align: center;} 
+        .input{
+                width: 260px;padding: 5px; margin-bottom: 10px; } 
+        .radio{
+            margin-bottom: 10px;} .close{margin: 10px 0 0 320px;cursor: pointer;border: 1px solid #ccc; padding: 2px; background: #ccc;} .close:hover{
+                background: #fff;} 
+        #gray{opacity: 0.8; padding: 15px;
+            background-color: rgba(1,1,1,0.75); position: fixed; left: 0;right: 0;top:0;bottom: 0; display: none; z-index:100; overflow: auto; } 
+	td{
+padding: 20px;
+}
+.w3-hover-shadow:hover{
+box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(255, 153, 51)
+}
+.w4-orange{
+background-color: #ff6600;
+}
+.w4-orange2{
+background-color: #ffc299;
+}
+p{ 
+text-indent: 20px;
+padding-bottom: 20px;
+
+
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;\
+
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
+</head>
+<title></title>
+
+<body >
+<header>
+
+
+
+<div class="w3-container  w3-blue">
+    <TABLE   align = "center" >
+    <TR width = "25%" align ="center">     
+    <TD  align = "left"> <img src="images/index.jpg " height="105px" align="right"></TD> 
+
+   <TD > <h1 align="left" valign = "top">Магазин рибацького інвентарю<br><center> "Рибацький край"</center></h1></TD>
+
+     
+
+
+    <!-- Задний прозрачный фон -->
+    <div onclick="show('none')" id="gray"></div>
+<div id="window">
+    <!-- Картинка крестика -->
+    <img class="close" src="window_up/i/close.png" alt=""  onclick="show('none')">
+    <div  class="form">
+        <font color="w3-blue"><h2 >Замовлення</h2></font>
+        <form action="index.html" name="f1">
+            <input type="text" placeholder="Імя" name="name1" class="input">
+            <input type="text" placeholder="Фамілія" name="name2" class="input">
+            <input type="email" placeholder="Email" name="email1" class="input">
+            <input type='tel' placeholder="Мобільний телефон" name="tel" class="input">
+                 <input type='text' placeholder="Назва товара" name="tel" class="input">
+
+            <input type="submit" value="Купити" name="sab" class="input"> 
+        </form>
+    </div>
+</div>
+  </TABLE>
+
+
+</form>
+
+  </div>
+</div>
+</div>
+<div class="w3-container" width =>
+  <div class="w3-bar w3-light-grey w3-border">
+    <a href="index.html" class="w3-bar-item w3-button w3-mobile">Головна</a>
+    <a href="w1pages.html" class="w3-bar-item w3-button  w3-mobile">Карпові вудилища</a>
+    <a href="e1pages.html" class="w3-bar-item w3-button  w3-mobile">Зимова рибалка</a>
+ <input class="place_for_search" type="text" id="text-to-find" value="" placeholder="Search" autofocus> 
+      <input class="button_for_turn_back" type="button" onclick="javascript: FindOnPage('text-to-find',false); return false;" value="Відміна " title="Отменить поиск">
+      <input class="button_for_search" type="submit" onclick="javascript: FindOnPage('text-to-find',true); return false;" value="Найти " title="Начать поиск">
+
+  </div>
+</header>
+     
+     
+
+
+<table >
+  <tr>
+    <td > 
+<div  class="w3-card-4 w3-hover-shadow  w3-round-xlarge" style="auto" bgcolor = "">
+
+   <td> <div   class="w3-container w3-center w3-card-4 w3-hover-shadow w3-round-xlarge">
+      <h5 class="place_for_search">Вудилище Dragon Super Sensible Ice 31  </h5>
+
+
+
+      <img src="images/e1.jpg" class="w3-round-xlarge w3-center" style="auto">
+      <div class="w3-container w3-center">
+ 
+  <button class="w3-button w3-white" onclick="document.getElementById('id01').style.display='block'">Детальніше</button> 
+<div id="id01" class="w3-panel w3-green w3-display-container" style="display:none">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-red w3-display-topright">x</span>
+   <h6 align="center">Характеристики: <h6>
+       <h6 align="justify">Строй:ExFast</h6>
+        <h6 align="justify">Кастинг (тест):200 г</h6>
+         <h6 align="justify">Секцій: 2</h6>
+            <h6 align="justify">Вага: 31 г</h6>
+</div>
+
+
+      <div class="w3-container w3-teal" style="width: 70%">
+        <h5 align="justify">Ціна:250 грн.</h5> 
+         <button  onclick="show('block')" class="regButton">Купити</button>  </div> </div>
+    </div>
+</div>
+  </div>
+  </td>
+  
+      <td > 
+   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 
+<div  class="w3-card-4 w3-hover-shadow w3-round-xlarge " style="auto">
+
+   <td> <div class="w3-container w3-center w3-card-4 w3-hover-shadow w3-round-xlarge">
+      <h5 class="place_for_search">Вудилище  Dragon Super Sensible Ice 35 </h5>
+      <img src="images/e2.jpg" class="w3-round-xlarge w3-center" style="auto">
+      <div class="w3-container w3-center">
+        
+  <button class="w3-button w3-white" onclick="document.getElementById('id02').style.display='block'">Детальніше</button> 
+<div id="id02" class="w3-panel w3-green w3-display-container" style="display:none">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-red w3-display-topright">x</span>
+   <h6 align="center">Характеристики: <h6>
+       <h6 align="justify">Строй:ExFast</h6>
+        <h6 align="justify">Кастинг (тест):200 г</h6>
+         <h6 align="justify">Секцій: 2</h6>
+            <h6 align="justify">Вага: 31 г</h6>
+
+</div>
+      <div class="w3-container  w3-teal" style="width: 45%">
+
+      
+        <h5 align="justify">Ціна:250 грн</h5>
+          <button  onclick="show('block')" class="regButton">Купити</button>  </div>
+    </div>
+   
+    </div>
+    </div>
+</div>
+  </div>
+  </td>
+      <td>   
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   
+<div  class="w3-center w3-card-4 w3-hover-shadow w3-round-xlarge " style="auto">
+
+   <td> <div class="w3-container w3-center w3-card-4 w3-hover-shadow w3-round-xlarge">
+      <h5 class="place_for_search">Вудилище Salmo Ice Lider  </h5>
+      <img src="images/e3.jpg" class="w3-round-xlarge w3-center" style="auto">
+     <center>  <button class="w3-button w3-white" onclick="document.getElementById('id03').style.display='block'">Детальніше</button>  </center>
+<div id="id03" class="w3-panel w3-green w3-display-container" style="display:none">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-red w3-display-topright">x</span>
+   <h6 align="center">Характеристики: <h6>
+       <h6 align="justify">Строй:ExFast</h6>
+        <h6 align="justify">Кастинг (тест):200 г</h6>
+         <h6 align="justify">Секцій: 2</h6>
+            <h6 align="justify">Вага: 31 г</h6>
+ </div>
+      <div class="w3-container w3-teal" style="width: 55%">
+
+        <h5 align="left">Ціна:250 грн</h5>  
+       <button  onclick="show('block')" class="regButton">Купити</button> 
+        </div>
+      </div>
+    </div>
+    
+    </div>
+    </div>
+</div>
+  </div>
+  </td>
+  <tr>
+          <td> 
+ 
+<div  class="w3-card-4 w3-hover-shadow w3-round-xlarge " style="auto">
+
+   <td> <div class="w3-container w3-center w3-card-4 w3-hover-shadow w3-round-xlarge">
+      <h5 class="place_for_search">Вудилище Salmo Ice Lider </h5>
+      <img src="images/e4.jpg" class="w3-round-xlarge w3-center" style="auto">
+         <center>   <button class="w3-button w3-white" onclick="document.getElementById('id04').style.display='block'">Детальніше</button>  </center>
+<div id="id04" class="w3-panel w3-green w3-display-container" style="display:none">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-red w3-display-topright">x</span>
+   <h6 align="center">Характеристики: <h6>
+       <h6 align="justify">Строй:ExFast</h6>
+        <h6 align="justify">Кастинг (тест):200 г</h6>
+         <h6 align="justify">Секцій: 2</h6>
+            <h6 align="justify">Вага: 31 г</h6>
+  </div>
+      <div class="w3-container w3-teal" style="width:75%">
+        <h5 align="justify">Ціна:250 грн</h5> 
+         <button сlass = "w3-button"  onclick="show('block')" class="regButton">Купити</button>  </div>
+    </div>
+    </div>
+       
+    </div>
+    </div>
+</div>
+  </div>
+  </td>
+        <td> 
+ 
+<div  class="w3-card-4 w3-hover-shadow w3-round-xlarge " style="auto">
+
+   <td> <div class="w3-container w3-center w3-card-4 w3-hover-shadow w3-round-xlarge">
+      <h5 class="place_for_search">Вудилище Salmo Ice Jig Light  </h5>
+      <img src="images/e5.jpg" class="w3-round-xlarge w3-center" style="auto">
+  <center>  <button class="w3-button w3-white" onclick="document.getElementById('id05').style.display='block'">Детальніше</button>  </center>
+<div id="id05" class="w3-panel w3-green w3-display-container" style="display:none">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-red w3-display-topright">x</span>
+   <h6 align="center">Характеристики: <h6>
+       <h6 align="justify">Строй:ExFast</h6>
+        <h6 align="justify">Кастинг (тест):200 г</h6>
+         <h6 align="justify">Секцій: 2</h6>
+            <h6 align="justify">Вага: 31 г</h6>
+        </div>
+
+      <div class="w3-container w3-teal" style="width: 50%">
+        <h5 align="justify">Ціна:250 грн</h5>  
+       <button  onclick="show('block')" class="regButton">Купити</button>  </div></div>
+    </div>
+ 
+    </div>
+    </div>
+</div>
+  </div>
+  </td>
+        <td> 
+ 
+<div  class="w3-card-4 w3-hover-shadow w3-round-xlarge " style="auto">
+
+   <td> <div class="w3-container w3-center w3-card-4 w3-hover-shadow w3-round-xlarge">
+      <h5 class="place_for_search">Вудилище Salmo Fin</h5>
+      &nbsp
+       <img src="images/e6.jpg" class="w3-round-xlarge w3-center" style="auto">
+     <center>     <button class="w3-button w3-white" onclick="document.getElementById('id06').style.display='block'">Детальніше</button>  <center>
+<div id="id06" class="w3-panel w3-green w3-display-container" style="display:none">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-red w3-display-topright">x</span>
+     
+     <h6 align="center">Характеристики: <h6>
+       <h6 align="justify">Строй:ExFast</h6>
+        <h6 align="justify">Кастинг (тест):200 г</h6>
+         <h6 align="justify">Секцій: 2</h6>
+            <h6 align="justify">Вага: 31 г</h6>
+</div>
+      <div class="w3-container w3-teal" style="width: 55%">
+        <h5 align="">Ціна:250 грн
+         <button  onclick="show('block')" class="regButton">Купити</button>  </div></h5>  </div>
+    </div>
+    </div>
+</div>
+  </div>
+  </td>
+      
+
+  </table>
+  <table align="center">
+    <tr>
+  <td><div class="pagination "  >
+
+ <a href="e1pages.html" class="active">1</a>
+ <a href="e2pages.html" >2</a>
+
+
+</table>
+
+</div>
+  <footer style="auto">
+    <div class="w3-container w3-blue" style="">
+      <h3>Наші контакти:</h3>
+       <img src="images/vodafone.jpg">+380665646328
+       &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp 
+       <img src="images/kyivstar.png">+380953636745 
+    </div>
+  </footer> 
+</body>
+<script>
+
+
+
+locale_HTML = document.body.innerHTML;   // сохраняем в переменную весь body (Исходный)
+
+function FindOnPage(name, status) {
+
+  input = document.getElementById(name).value; //получаем значение из поля в html
+  
+  if(input.length<3&&status==true) {
+    alert('Для поиска вы должны ввести три или более символов');
+    function FindOnPageBack() { document.body.innerHTML = locale_HTML; }   //обнуляем стили
+  }
+        
+        if(input.length>=3)
+  {
+              function FindOnPageGo() {
+                     search = '/'+input+'/g';  //делаем из строки регуярное выражение
+         pr = document.body.innerHTML;   // сохраняем в переменную весь body
+         result = pr.match(/>(.*?)</g);  //отсекаем все теги и получаем только текст
+         result_arr = [];   //в этом массиве будем хранить результат работы (подсветку)
+
+                     for(var i=0; i<result.length;i++) {
+            result_arr[i] = result[i].replace(eval(search), '<span style="background-color:yellow;">'+input+'</span>'); //находим нужные элементы, задаем стиль и сохраняем в новый массив
+      }
+         for(var i=0; i<result.length;i++) {
+      pr=pr.replace(result[i],result_arr[i])  //заменяем в переменной с html текст на новый из новогом ассива
+      }
+         document.body.innerHTML = pr;  //заменяем html код
+              }
+        }
+        function FindOnPageBack() { document.body.innerHTML = locale_HTML; }   //обнуляем стили
+        if(status) { FindOnPageBack(); FindOnPageGo(); } //чистим прошлое и Выделяем найденное
+  if(!status) { FindOnPageBack(); } //Снимаем выделение
+      input = numer.replace(/^\s+/g,'');
+        input = numer.replace(/[ ]{1,}/g,' ');
+                input = document.getElementById(name).value; //получаем значение из поля в html
+
+}
+     var warning = true;
+  for(var i=0;i<result.length;i++) {
+  if(result[i].match(eval(search))!=null) {
+      warning = false;
+    }
+  }
+  if(warning == true) {
+    alert('Не найдено ни одного совпадения');
+  }
+    function show(state)
+  {
+  document.getElementById('window').style.display = state;  
+  document.getElementById('gray').style.display = state;    
+  }
+</script>
+</html>
+
+
+
+
